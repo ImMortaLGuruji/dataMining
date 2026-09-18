@@ -1,0 +1,30 @@
+==================================================
+ANNAPURNA STORES — HISTORICAL PRICING EVIDENCE
+==================================================
+
+QUERY A: MARCH 2024
+Reporting Period: 2024-03-01 to 2024-04-01
+Total Bills: 13602
+Sales Lines: 64507
+Till Revenue (INR): 41971649.09
+Authoritative Catalog Revenue (INR): 41971885.88
+Net Revenue (INR): 41971649.09
+
+QUERY B: RECENT TWO-MONTH PERIOD (NOV - DEC 2024)
+Reporting Period: 2024-11-01 to 2025-01-01
+Month 2024-11: Bills=16089, Lines=76712, Net Revenue=51583838.47 INR
+Month 2024-12: Bills=15605, Lines=74511, Net Revenue=50745259.48 INR
+
+SAMPLE PRICE REVISIONS (MARCH 2024 vs NOVEMBER 2024):
+Code       | March Price  | Nov Price    | Delta    | Product Name
+---------------------------------------------------------------------------
+P106486    | 1342.57      | 1837.06      | 494.49   | Mamypoko Diapers XL
+P102139    | 1231.60      | 1710.06      | 478.46   | Dhara Mustard Oil 5L
+P100035    | 1456.57      | 1810.38      | 353.81   | Huggies Diapers Small
+P104469    | 1383.23      | 1631.11      | 247.88   | Huggies Baby Wipes XL
+P102181    | 1394.08      | 1615.15      | 221.07   | 24 Mantra Poha 5kg
+P101356    | 1054.95      | 1264.05      | 209.10   | Saffola Rice Bran Oil 5L
+P107449    | 1290.50      | 1495.62      | 205.12   | Mamypoko Baby Soap XL
+P103950    | 1095.36      | 1283.54      | 188.18   | Fortune Sunflower Oil 5L
+P102151    | 935.36       | 1117.25      | 181.89   | Sundrop Mustard Oil 2L
+P108374    | 1247.39      | 1417.29      | 169.90   | Fortune Toor Dal 5kg

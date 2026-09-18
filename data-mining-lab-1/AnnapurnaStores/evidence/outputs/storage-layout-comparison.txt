@@ -1,0 +1,28 @@
+==================================================
+ANNAPURNA STORES — STORAGE LAYOUT COMPARISON
+==================================================
+
+EXPERIMENT TARGET: Query Store S01 for Month 2024-03
+
+LAYOUT A: PARTITIONED (store=S01/year=2024/month=03/)
+Prefix: raw/sales/store=S01/year=2024/month=03/
+Files scanned/opened: 31
+Bytes scanned/opened: 605,470 bytes (0.58 MB)
+Row count returned: 6753
+Revenue calculated: 4408976.65 INR
+Execution time: 0.288 seconds
+
+LAYOUT B: FLAT UNPARTITIONED (all-sales/)
+Prefix: all-sales/
+Total objects in bucket directory: 4457
+Total directory size: 68,706,877 bytes (65.52 MB)
+Files matched by wildcard: 31
+Bytes matched by wildcard: 605,470 bytes (0.58 MB)
+Row count returned: 6753
+Revenue calculated: 4408976.65 INR
+Execution time: 0.301 seconds
+
+EFFICIENCY & PRUNING ANALYSIS:
+Files eliminated by prefix pruning: 4426 files (99.30% reduction)
+Bytes eliminated by prefix pruning: 68,101,407 bytes (99.12% I/O reduction)
+Conclusion: Layout A restricts S3 LIST and GET operations strictly to the relevant partition, eliminating 99.30% of unnecessary cloud storage requests.

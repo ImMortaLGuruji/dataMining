@@ -1,0 +1,13 @@
+month,pipeline_revenue,finance_revenue,difference,difference_percentage,status,root_cause,action
+2024-01,38446071.33,38446071.33,0.00,0.0000%,MATCH,Exact Match,No action required. Revenue sign-off verified.
+2024-02,34887085.55,34887085.55,0.00,0.0000%,MATCH,Exact Match,No action required. Revenue sign-off verified.
+2024-03,41971649.09,42457899.09,-486250.00,-1.1453%,VARIANCE,Scope difference: finance includes bulk institutional order invoiced outside till,"Finance confirmed 486,250.00 INR bulk invoice was processed offline outside the retail till system."
+2024-04,37958457.37,37958457.37,0.00,0.0000%,MATCH,Exact Match,No action required. Revenue sign-off verified.
+2024-05,41764716.40,41764716.40,0.00,0.0000%,MATCH,Exact Match,No action required. Revenue sign-off verified.
+2024-06,38987082.82,38987082.82,0.00,0.0000%,MATCH,Exact Match,No action required. Revenue sign-off verified.
+2024-07,40295160.11,40527291.81,-232131.70,-0.5728%,VARIANCE,Source data issue: Pune (S07) till server outage on July 9-11 (lost exports),"Pune store manager phoned in manual ledger sales of 232,131.70 INR for July 9-11. Digital files do not exist."
+2024-08,45252181.75,45252181.75,0.00,0.0000%,MATCH,Exact Match,No action required. Revenue sign-off verified.
+2024-09,44615037.46,44615037.46,0.00,0.0000%,MATCH,Exact Match,No action required. Revenue sign-off verified.
+2024-10,56359195.92,56359195.92,0.00,0.0000%,MATCH,Exact Match,No action required. Revenue sign-off verified.
+2024-11,51583838.47,51583838.47,0.00,0.0000%,MATCH,Exact Match,No action required. Revenue sign-off verified.
+2024-12,50745259.48,50745209.00,50.48,0.0001%,VARIANCE,Definition difference: finance rounded each individual bill total to the rupee,"Cumulative bill-level rupee rounding difference of -50.48 INR across 15,605 bills (-0.0001% variance). Align rounding policy."

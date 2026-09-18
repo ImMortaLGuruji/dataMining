@@ -1,0 +1,4 @@
+NAME                 IMAGE                COMMAND                  SERVICE             CREATED          STATUS                    PORTS
+annapurna-engine     python:3.11-slim     "sh -c 'pip install â€¦"   analytical-engine   17 minutes ago   Up 17 minutes             
+annapurna-minio      minio/minio:latest   "/usr/bin/docker-entâ€¦"   minio               17 minutes ago   Up 17 minutes (healthy)   0.0.0.0:9000-9001->9000-9001/tcp, [::]:9000-9001->9000-9001/tcp
+annapurna-postgres   postgres:16          "docker-entrypoint.sâ€¦"   postgres            17 minutes ago   Up 17 minutes (healthy)   0.0.0.0:5432->5432/tcp, [::]:5432->5432/tcp

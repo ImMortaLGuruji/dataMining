@@ -1,0 +1,45 @@
+==================================================
+ANNAPURNA STORES — IDEMPOTENCY TEST
+==================================================
+
+RUN 1
+Command:
+C:\Program Files\Python313\python.exe C:\Users\ub02-glab-040\Documents\GitHub\dataMining\data-mining-lab-1\AnnapurnaStores\ingestion\scripts\build_analytical_dataset.py
+
+Row count:
+789516
+
+Checksum:
+c20499905c473af72d4a99643e6122fd
+
+
+RUN 2
+Command:
+C:\Program Files\Python313\python.exe C:\Users\ub02-glab-040\Documents\GitHub\dataMining\data-mining-lab-1\AnnapurnaStores\ingestion\scripts\build_analytical_dataset.py
+
+Row count:
+789516
+
+Checksum:
+c20499905c473af72d4a99643e6122fd
+
+
+RUN 3
+Command:
+C:\Program Files\Python313\python.exe C:\Users\ub02-glab-040\Documents\GitHub\dataMining\data-mining-lab-1\AnnapurnaStores\ingestion\scripts\build_analytical_dataset.py
+
+Row count:
+789516
+
+Checksum:
+c20499905c473af72d4a99643e6122fd
+
+
+COMPARISON
+----------
+
+Row counts identical:
+YES
+
+Checksums identical:
+YES

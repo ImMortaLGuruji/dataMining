@@ -1,0 +1,62 @@
+==================================================
+ANNAPURNA STORES — FEDERATED CROSS-SYSTEM QUERY
+==================================================
+
+QUERY EXECUTED:
+SELECT
+                s.store_name,
+                s.city,
+                c.category_name,
+                c.department,
+                COUNT(DISTINCT raw_sales.column0) AS total_bills,
+                SUM(CAST(raw_sales.column3 AS DECIMAL(12,2))) AS total_quantity,
+                ROUND(SUM(CAST(raw_sales.column3 AS DECIMAL(12,2)) * CAST(raw_sales.column4 AS DECIMAL(12,2))), 2) AS total_revenue
+            FROM read_csv('s3://annapurna-raw/raw/sales/store=S01/year=2024/month=03/*.csv',
+                header=True,
+                columns={
+                    'column0': 'VARCHAR',
+                    'column1': 'INTEGER',
+                    'column2': 'VARCHAR',
+                    'column3': 'VARCHAR',
+                    'column4': 'VARCHAR',
+                    'column5': 'VARCHAR',
+                    'column6': 'VARCHAR'
+                }
+            ) AS raw_sales
+            JOIN pg_db.stores s
+                ON s.store_id = 'S01'
+            JOIN pg_db.products p
+                ON raw_sales.column2 = p.product_code
+               AND DATE '2024-03-15' >= p.valid_from
+               AND DATE '2024-03-15' <= p.valid_to
+            JOIN pg_db.product_categories c
+                ON p.category_id = c.category_id
+            WHERE raw_sales.column5 IN ('SALE', 'DISCOUNT', 'RETURN', 'VOID')
+            GROUP BY
+                s.store_name,
+                s.city,
+                c.category_name,
+                c.department
+            ORDER BY total_revenue DESC;
+
+SOURCES JOINED DYNAMICALLY:
+1. MinIO Object Store: s3://annapurna-raw/raw/sales/store=S01/year=2024/month=03/*.csv
+2. PostgreSQL Masters: pg_db.stores, pg_db.products, pg_db.product_categories
+
+RESULTS (Store S01 - March 2024 Category Revenue):
+Store                  | Category               | Department | Quantity   | Revenue (INR)
+-------------------------------------------------------------------------------------
+Annapurna Jayanagar    | Staples & Grains       | Food       | 965.00     | 807284.11   
+Annapurna Jayanagar    | Baby Care              | Non-Food   | 971.00     | 765164.89   
+Annapurna Jayanagar    | Edible Oils            | Food       | 963.00     | 709447.81   
+Annapurna Jayanagar    | Personal Care          | Non-Food   | 823.00     | 325970.43   
+Annapurna Jayanagar    | Dairy                  | Fresh      | 1072.00    | 320963.48   
+Annapurna Jayanagar    | Stationery & General   | Non-Food   | 1004.00    | 236221.21   
+Annapurna Jayanagar    | Frozen & Ready to Eat  | Fresh      | 934.00     | 234972.39   
+Annapurna Jayanagar    | Home Care              | Non-Food   | 784.00     | 230933.67   
+Annapurna Jayanagar    | Beverages              | Food       | 871.00     | 215441.40   
+Annapurna Jayanagar    | Spices & Masala        | Food       | 914.00     | 167026.38   
+Annapurna Jayanagar    | Confectionery          | Food       | 922.00     | 151097.74   
+Annapurna Jayanagar    | Fruits & Vegetables    | Fresh      | 925.00     | 128638.42   
+Annapurna Jayanagar    | Bakery                 | Fresh      | 1008.00    | 104548.15   
+Annapurna Jayanagar    | Biscuits & Snacks      | Food       | 840.00     | 55745.14    

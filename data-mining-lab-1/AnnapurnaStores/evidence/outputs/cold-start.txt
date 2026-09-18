@@ -1,0 +1,45 @@
+==================================================
+ANNAPURNA STORES — COLD-START REPRODUCIBILITY TEST
+==================================================
+
+1. Volume & Container Teardown:
+   Command: docker compose down -v
+   Result : Removed all containers (annapurna-postgres, annapurna-minio, annapurna-engine)
+            Removed networks and volumes (annapurnastores_minio_data, annapurnastores_postgres_data)
+
+2. Stack Startup from Scratch:
+   Command: docker compose up -d
+   Result : Created network annapurnastores_default
+            Created volumes annapurnastores_minio_data, annapurnastores_postgres_data
+            Started annapurna-postgres (healthy)
+            Started annapurna-minio (healthy)
+            Started annapurna-engine
+
+3. Ingestion & Landing:
+   Command: python ingestion/scripts/ingest.py
+   Result : Discovered 4,457 sales files
+            Created MinIO bucket 'annapurna-raw'
+            Uploaded 4,457 partitioned files to raw/sales/store=<store>/year=<year>/month=<month>/
+            Uploaded 4,457 flat files to all-sales/
+
+4. Analytical Dataset Build:
+   Command: python ingestion/scripts/build_analytical_dataset.py
+   Result : Scanned 1,137,585 raw rows
+            Filtered 16,661 duplicate lines
+            Loaded 1,120,924 unique lines
+            Filtered out TAX & TENDER rows
+            Resolved SCD2 historical product codes (24 reissued codes)
+            Resolved temporal price revisions from price_revisions
+            Created fact_sales with 789,516 rows
+
+5. Validation Suite:
+   Command: python scripts/validate.py
+   Result : [1/7] Docker containers       : PASS
+            [2/7] PostgreSQL masters      : PASS (stores=12, categories=14, products=1224, revisions=4320)
+            [3/7] MinIO object store      : PASS (4,457 files)
+            [4/7] DuckDB Star Schema      : PASS (fact_sales=789516, dim_product=1224, dim_store=12)
+            [5/7] Idempotency/Uniqueness  : PASS (0 duplicate lines)
+            [6/7] Data Quality            : PASS (0 orphaned records)
+            [7/7] Finance Reconciliation  : PASS (October revenue = 56,359,195.92 INR)
+   Status : ALL TESTS PASSED (EXIT CODE 0)
+==================================================

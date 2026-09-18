@@ -1,0 +1,349 @@
+==================================================
+FEDERATED QUERY EXECUTION PLAN (EXPLAIN)
+==================================================
+
+physical_plan: ┌───────────────────────────┐
+│          ORDER_BY         │
+│    ────────────────────   │
+│ round(sum((CAST(raw_sales │
+│ .column3 AS DECIMAL(12, 2)│
+│ ) * CAST(raw_sales.column4│
+│  AS DECIMAL(12, 2)))), 2) │
+│            DESC           │
+└─────────────┬─────────────┘
+┌─────────────┴─────────────┐
+│         PROJECTION        │
+│    ────────────────────   │
+│         store_name        │
+│            city           │
+│       category_name       │
+│         department        │
+│        total_bills        │
+│       total_quantity      │
+│       total_revenue       │
+│                           │
+│        ~9,942 rows        │
+└─────────────┬─────────────┘
+┌─────────────┴─────────────┐
+│       HASH_GROUP_BY       │
+│    ────────────────────   │
+│          Groups:          │
+│             #0            │
+│             #1            │
+│             #2            │
+│             #3            │
+│                           │
+│        Aggregates:        │
+│     count(DISTINCT #4)    │
+│          sum(#5)          │
+│          sum(#6)          │
+│                           │
+│        ~9,942 rows        │
+└─────────────┬─────────────┘
+┌─────────────┴─────────────┐
+│         PROJECTION        │
+│    ────────────────────   │
+│         store_name        │
+│            city           │
+│       category_name       │
+│         department        │
+│          column0          │
+│             #5            │
+│   (#5 * CAST(column4 AS   │
+│       DECIMAL(12,2)))     │
+│                           │
+│        ~9,944 rows        │
+└─────────────┬─────────────┘
+┌─────────────┴─────────────┐
+│         PROJECTION        │
+│    ────────────────────   │
+│         store_name        │
+│            city           │
+│       category_name       │
+│         department        │
+│          column0          │
+│ CAST(column3 AS DECIMAL(12│
+│            ,2))           │
+│          column4          │
+│                           │
+│        ~9,944 rows        │
+└─────────────┬─────────────┘
+┌─────────────┴─────────────┐
+│       CROSS_PRODUCT       ├────────────────────────────────────────────────────────────────────────┐
+└─────────────┬─────────────┘                                                                        │
+┌─────────────┴─────────────┐                                                          ┌─────────────┴─────────────┐
+│         HASH_JOIN         │                                                          │       POSTGRES_SCAN       │
+│    ────────────────────   │                                                          │    ────────────────────   │
+│      Join Type: INNER     │                                                          │       Table: stores       │
+│                           │                                                          │                           │
+│        Conditions:        │                                                          │        Projections:       │
+│   column2 = product_code  │                                                          │          store_id         │
+│                           ├──────────────┐                                           │         store_name        │
+│                           │              │                                           │            city           │
+│                           │              │                                           │                           │
+│                           │              │                                           │          Filters:         │
+│                           │              │                                           │       store_id='S01'      │
+│                           │              │                                           │                           │
+│         ~552 rows         │              │                                           │          ~18 rows         │
+└─────────────┬─────────────┘              │                                           └───────────────────────────┘
+┌─────────────┴─────────────┐┌─────────────┴─────────────┐
+│         PROJECTION        ││         HASH_JOIN         │
+│    ────────────────────   ││    ────────────────────   │
+│             #0            ││      Join Type: INNER     │
+│             #2            ││                           │
+│             #3            ││        Conditions:        ├──────────────┐
+│             #4            ││ category_id = category_id │              │
+│                           ││                           │              │
+│        ~2,771 rows        ││         ~252 rows         │              │
+└─────────────┬─────────────┘└─────────────┬─────────────┘              │
+┌─────────────┴─────────────┐┌─────────────┴─────────────┐┌─────────────┴─────────────┐
+│           FILTER          ││       POSTGRES_SCAN       ││       POSTGRES_SCAN       │
+│    ────────────────────   ││    ────────────────────   ││    ────────────────────   │
+│  ((column5 = 'SALE') OR   ││      Table: products      ││           Table:          │
+│ (column5 = 'DISCOUNT') OR ││                           ││     product_categories    │
+│  (column5 = 'RETURN') OR  ││        Projections:       ││                           │
+│    (column5 = 'VOID'))    ││        product_code       ││        Projections:       │
+│                           ││         valid_from        ││        category_id        │
+│                           ││          valid_to         ││       category_name       │
+│                           ││        category_id        ││         department        │
+│                           ││                           ││                           │
+│                           ││          Filters:         ││                           │
+│                           ││ valid_from<='2024-03-15': ││                           │
+│                           ││           :DATE           ││                           │
+│                           ││  valid_to>='2024-03-15':  ││                           │
+│                           ││           :DATE           ││                           │
+│                           ││                           ││                           │
+│        ~2,771 rows        ││         ~252 rows         ││         ~148 rows         │
+└─────────────┬─────────────┘└───────────────────────────┘└───────────────────────────┘
+┌─────────────┴─────────────┐
+│          READ_CSV         │
+│    ────────────────────   │
+│     Function: READ_CSV    │
+│                           │
+│        Projections:       │
+│          column2          │
+│          column5          │
+│          column0          │
+│          column3          │
+│          column4          │
+│                           │
+│        ~13,857 rows       │
+└───────────────────────────┘
+
+
+==================================================
+FEDERATED QUERY EXECUTION PLAN (EXPLAIN ANALYZE)
+==================================================
+
+analyzed_plan: ┌─────────────────────────────────────┐
+│┌───────────────────────────────────┐│
+││    Query Profiling Information    ││
+│└───────────────────────────────────┘│
+└─────────────────────────────────────┘
+EXPLAIN ANALYZE              SELECT                 s.store_name,                 s.city,                 c.category_name,                 c.department,                 COUNT(DISTINCT raw_sales.column0) AS total_bills,                 SUM(CAST(raw_sales.column3 AS DECIMAL(12,2))) AS total_quantity,                 ROUND(SUM(CAST(raw_sales.column3 AS DECIMAL(12,2)) * CAST(raw_sales.column4 AS DECIMAL(12,2))), 2) AS total_revenue             FROM read_csv('s3://annapurna-raw/raw/sales/store=S01/year=2024/month=03/*.csv',                 header=True,                 columns={                     'column0': 'VARCHAR',                     'column1': 'INTEGER',                     'column2': 'VARCHAR',                     'column3': 'VARCHAR',                     'column4': 'VARCHAR',                     'column5': 'VARCHAR',                     'column6': 'VARCHAR'                 }             ) AS raw_sales             JOIN pg_db.stores s                 ON s.store_id = 'S01'             JOIN pg_db.products p                 ON raw_sales.column2 = p.product_code                AND DATE '2024-03-15' >= p.valid_from                AND DATE '2024-03-15' <= p.valid_to             JOIN pg_db.product_categories c                 ON p.category_id = c.category_id             WHERE raw_sales.column5 IN ('SALE', 'DISCOUNT', 'RETURN', 'VOID')             GROUP BY                 s.store_name,                 s.city,                 c.category_name,                 c.department             ORDER BY total_revenue DESC;         
+┌─────────────────────────────────────┐
+│┌───────────────────────────────────┐│
+││         HTTPFS HTTP Stats         ││
+││                                   ││
+││           in: 777.2 KiB           ││
+││            out: 0 bytes           ││
+││             #HEAD: 10             ││
+││              #GET: 41             ││
+││              #PUT: 0              ││
+││              #POST: 0             ││
+││             #DELETE: 0            ││
+│└───────────────────────────────────┘│
+└─────────────────────────────────────┘
+┌────────────────────────────────────────────────┐
+│┌──────────────────────────────────────────────┐│
+││              Total Time: 0.318s              ││
+│└──────────────────────────────────────────────┘│
+└────────────────────────────────────────────────┘
+┌───────────────────────────┐
+│           QUERY           │
+└─────────────┬─────────────┘
+┌─────────────┴─────────────┐
+│      EXPLAIN_ANALYZE      │
+│    ────────────────────   │
+│                           │
+│           0 rows          │
+│           0.00s           │
+└─────────────┬─────────────┘
+┌─────────────┴─────────────┐
+│          ORDER_BY         │
+│    ────────────────────   │
+│ round(sum((CAST(raw_sales │
+│ .column3 AS DECIMAL(12, 2)│
+│ ) * CAST(raw_sales.column4│
+│  AS DECIMAL(12, 2)))), 2) │
+│            DESC           │
+│                           │
+│                           │
+│                           │
+│          14 rows          │
+│           0.01s           │
+└─────────────┬─────────────┘
+┌─────────────┴─────────────┐
+│         PROJECTION        │
+│    ────────────────────   │
+│         store_name        │
+│            city           │
+│       category_name       │
+│         department        │
+│        total_bills        │
+│       total_quantity      │
+│       total_revenue       │
+│                           │
+│                           │
+│                           │
+│          14 rows          │
+│           0.00s           │
+└─────────────┬─────────────┘
+┌─────────────┴─────────────┐
+│       HASH_GROUP_BY       │
+│    ────────────────────   │
+│          Groups:          │
+│             #0            │
+│             #1            │
+│             #2            │
+│             #3            │
+│                           │
+│        Aggregates:        │
+│     count(DISTINCT #4)    │
+│          sum(#5)          │
+│          sum(#6)          │
+│                           │
+│                           │
+│                           │
+│          14 rows          │
+│           0.14s           │
+└─────────────┬─────────────┘
+┌─────────────┴─────────────┐
+│         PROJECTION        │
+│    ────────────────────   │
+│         store_name        │
+│            city           │
+│       category_name       │
+│         department        │
+│          column0          │
+│             #5            │
+│   (#5 * CAST(column4 AS   │
+│       DECIMAL(12,2)))     │
+│                           │
+│                           │
+│                           │
+│         6,559 rows        │
+│           0.00s           │
+└─────────────┬─────────────┘
+┌─────────────┴─────────────┐
+│         PROJECTION        │
+│    ────────────────────   │
+│         store_name        │
+│            city           │
+│       category_name       │
+│         department        │
+│          column0          │
+│ CAST(column3 AS DECIMAL(12│
+│            ,2))           │
+│          column4          │
+│                           │
+│                           │
+│                           │
+│         6,559 rows        │
+│           0.00s           │
+└─────────────┬─────────────┘
+┌─────────────┴─────────────┐
+│       CROSS_PRODUCT       │
+│    ────────────────────   │
+│                           ├────────────────────────────────────────────────────────────────────────┐
+│         6,559 rows        │                                                                        │
+│           0.00s           │                                                                        │
+└─────────────┬─────────────┘                                                                        │
+┌─────────────┴─────────────┐                                                          ┌─────────────┴─────────────┐
+│         HASH_JOIN         │                                                          │         TABLE_SCAN        │
+│    ────────────────────   │                                                          │    ────────────────────   │
+│      Join Type: INNER     │                                                          │       Table: stores       │
+│                           │                                                          │                           │
+│        Conditions:        │                                                          │        Projections:       │
+│   column2 = product_code  │                                                          │          store_id         │
+│                           │                                                          │         store_name        │
+│                           │                                                          │            city           │
+│                           ├──────────────┐                                           │                           │
+│                           │              │                                           │          Filters:         │
+│           0.00s           │              │                                           │       store_id='S01'      │
+│                           │              │                                           │                           │
+│                           │              │                                           │                           │
+│                           │              │                                           │                           │
+│         6,559 rows        │              │                                           │           1 row           │
+│          (0.00s)          │              │                                           │           0.00s           │
+└─────────────┬─────────────┘              │                                           └───────────────────────────┘
+┌─────────────┴─────────────┐┌─────────────┴─────────────┐
+│         PROJECTION        ││         HASH_JOIN         │
+│    ────────────────────   ││    ────────────────────   │
+│             #0            ││      Join Type: INNER     │
+│             #2            ││                           │
+│             #3            ││        Conditions:        │
+│             #4            ││ category_id = category_id ├──────────────┐
+│                           ││                           │              │
+│                           ││                           │              │
+│                           ││                           │              │
+│         6,753 rows        ││         1,200 rows        │              │
+│           0.00s           ││           0.00s           │              │
+└─────────────┬─────────────┘└─────────────┬─────────────┘              │
+┌─────────────┴─────────────┐┌─────────────┴─────────────┐┌─────────────┴─────────────┐
+│           FILTER          ││         TABLE_SCAN        ││         TABLE_SCAN        │
+│    ────────────────────   ││    ────────────────────   ││    ────────────────────   │
+│  ((column5 = 'SALE') OR   ││      Table: products      ││           Table:          │
+│ (column5 = 'DISCOUNT') OR ││                           ││     product_categories    │
+│  (column5 = 'RETURN') OR  ││        Projections:       ││                           │
+│    (column5 = 'VOID'))    ││        product_code       ││        Projections:       │
+│                           ││         valid_from        ││        category_id        │
+│                           ││          valid_to         ││       category_name       │
+│                           ││        category_id        ││         department        │
+│                           ││                           ││                           │
+│           0.00s           ││          Filters:         ││                           │
+│                           ││ valid_from<='2024-03-15': ││                           │
+│                           ││           :DATE           ││                           │
+│                           ││  valid_to>='2024-03-15':  ││           0.00s           │
+│                           ││           :DATE           ││                           │
+│                           ││                           ││                           │
+│                           ││      Dynamic Filters:     ││                           │
+│                           ││ optional: category_id IN (││                           │
+│                           ││ 'C06', 'C10', 'C02', 'C04'││                           │
+│                           ││  , 'C08', 'C09', 'C03',   ││                           │
+│                           ││ 'C01', 'C11', 'C13', 'C05'││                           │
+│                           ││ , 'C14', 'C12', 'C07') AND││                           │
+│                           ││   optional: category_id>= ││                           │
+│                           ││    'C01' AND optional:    ││                           │
+│                           ││     category_id<='C14'    ││                           │
+│                           ││                           ││                           │
+│                           ││                           ││                           │
+│                           ││                           ││                           │
+│         6,753 rows        ││         1,200 rows        ││          14 rows          │
+│          (0.00s)          ││           0.00s           ││          (0.00s)          │
+└─────────────┬─────────────┘└───────────────────────────┘└───────────────────────────┘
+┌─────────────┴─────────────┐
+│         TABLE_SCAN        │
+│    ────────────────────   │
+│     Function: READ_CSV    │
+│                           │
+│        Projections:       │
+│          column2          │
+│          column5          │
+│          column0          │
+│          column3          │
+│          column4          │
+│                           │
+│    Total Files Read: 31   │
+│                           │
+│        Filename(s):       │
+│   s3://annapurna-raw/raw  │
+│ /sales/store=S01/year=2024│
+│    /month=03/*.csv, ...   │
+│                           │
+│                           │
+│                           │
+│         9,659 rows        │
+│           0.17s           │
+└───────────────────────────┘
+

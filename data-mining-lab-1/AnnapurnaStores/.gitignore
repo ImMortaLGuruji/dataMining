@@ -1,0 +1,9 @@
+# Annapurna Stores .gitignore
+.env
+__pycache__/
+*.pyc
+.duckdb/
+*.duckdb
+*.duckdb.wal
+minio_data/
+postgres_data/
