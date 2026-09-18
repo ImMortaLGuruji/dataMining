@@ -1,0 +1,30 @@
+# SetuBid Experiments Configuration
+experiments:
+  01_dataset_profile:
+    sample_size: null  # null means full corpus
+
+  02_similarity:
+    candidate_a: "word_tokens"
+    candidate_b: "character_ngrams"
+    ngram_ranges:
+      - [3, 3]
+      - [3, 5]
+
+  03_representation_size:
+    candidate_sizes: [64, 128, 256, 512]
+    error_metric: "mae"
+
+  04_retrieval:
+    sweep_configurations:
+      - {bands: 64, rows: 4}  # s_approx ~ 0.35
+      - {bands: 32, rows: 8}  # s_approx ~ 0.65
+      - {bands: 16, rows: 16} # s_approx ~ 0.85
+      - {bands: 8, rows: 32}  # s_approx ~ 0.93
+
+  05_database:
+    benchmark_queries: 100
+    alternative: "sequential_scan"
+
+  06_skew_mitigation:
+    nodal_portals: ["P001", "P002", "P003", "P004", "P005", "P006"]
+    bucket_cap: 100

@@ -1,0 +1,13 @@
+metric,value
+total_notices,12000.0
+total_candidate_comparisons,18175838.0
+candidate_count_mean,1514.7
+candidate_count_median,1533.0
+candidate_count_p90,2389.0
+candidate_count_p95,2592.0
+candidate_count_p99,3027.01
+candidate_count_max,3641.0
+top_1_pct_notices_work_share_pct,2.11
+top_5_pct_notices_work_share_pct,9.42
+top_10_pct_notices_work_share_pct,17.58
+nodal_aggregators_work_share_pct,44.21

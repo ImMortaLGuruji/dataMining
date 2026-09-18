@@ -1,0 +1,25 @@
+{
+  "requirement": {
+    "acceptable_error_epsilon": 0.05,
+    "required_confidence": 0.95,
+    "z_quantile_95": 1.96
+  },
+  "formula": {
+    "estimator": "J_hat = k / m",
+    "variance": "Var(J_hat) = J * (1 - J) / m",
+    "max_variance": "0.25 / m at J = 0.5",
+    "standard_error": "sigma = sqrt(J * (1 - J) / m) <= 0.5 / sqrt(m)"
+  },
+  "derivation": {
+    "clt_normal_minimum_m": 385,
+    "chebyshev_distribution_free_m": 2000,
+    "tested_candidate_sizes": [
+      64,
+      128,
+      256,
+      512
+    ],
+    "chosen_size_m": 256,
+    "justification": "m = 256 offers a theoretical max standard error of sigma = 0.5 / 16 = 0.03125, yielding a 95% margin of error of 1.96 * 0.03125 = 0.0612 (very close to target 0.05), while admitting clean LSH factorizations such as b=32 bands of r=8 rows."
+  }
+}

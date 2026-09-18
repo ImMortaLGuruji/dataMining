@@ -1,0 +1,140 @@
+{
+  "configurations": {
+    "candidate_a_word": {
+      "name": "Candidate A (Word Tokens)",
+      "same": {
+        "mean": 0.7355,
+        "median": 0.7351,
+        "std": 0.2107,
+        "p05": 0.3732,
+        "min": 0.2811
+      },
+      "different": {
+        "mean": 0.4414,
+        "median": 0.444,
+        "std": 0.099,
+        "p95": 0.5981,
+        "max": 0.6433
+      },
+      "separation": {
+        "mean_gap": 0.2941,
+        "p05_same_minus_p95_diff": -0.2249,
+        "auc": 0.8707
+      }
+    },
+    "candidate_b1_char3": {
+      "name": "Candidate B1 (Char 3-grams)",
+      "same": {
+        "mean": 0.8071,
+        "median": 0.8174,
+        "std": 0.159,
+        "p05": 0.5251,
+        "min": 0.4027
+      },
+      "different": {
+        "mean": 0.5999,
+        "median": 0.6,
+        "std": 0.0749,
+        "p95": 0.7215,
+        "max": 0.7673
+      },
+      "separation": {
+        "mean_gap": 0.2071,
+        "p05_same_minus_p95_diff": -0.1965,
+        "auc": 0.8581
+      }
+    },
+    "candidate_b2_char3_5": {
+      "name": "Candidate B2 (Char 3-5-grams)",
+      "same": {
+        "mean": 0.7414,
+        "median": 0.7357,
+        "std": 0.1987,
+        "p05": 0.4089,
+        "min": 0.303
+      },
+      "different": {
+        "mean": 0.4815,
+        "median": 0.4804,
+        "std": 0.0977,
+        "p95": 0.6366,
+        "max": 0.6987
+      },
+      "separation": {
+        "mean_gap": 0.2599,
+        "p05_same_minus_p95_diff": -0.2277,
+        "auc": 0.859
+      }
+    },
+    "candidate_c_composite": {
+      "name": "Candidate C (Composite: 0.7 Body + 0.3 Title)",
+      "same": {
+        "mean": 0.7475,
+        "median": 0.7494,
+        "std": 0.1452,
+        "p05": 0.5212,
+        "min": 0.401
+      },
+      "different": {
+        "mean": 0.3661,
+        "median": 0.3617,
+        "std": 0.0739,
+        "p95": 0.4831,
+        "max": 0.6654
+      },
+      "separation": {
+        "mean_gap": 0.3814,
+        "p05_same_minus_p95_diff": 0.0381,
+        "auc": 0.9948
+      }
+    },
+    "candidate_c_mitigated": {
+      "name": "Candidate C+Mitigation (Stripped Composite)",
+      "same": {
+        "mean": 0.7307,
+        "median": 0.751,
+        "std": 0.1761,
+        "p05": 0.4604,
+        "min": 0.1881
+      },
+      "different": {
+        "mean": 0.3375,
+        "median": 0.351,
+        "std": 0.1166,
+        "p95": 0.4801,
+        "max": 0.6625
+      },
+      "separation": {
+        "mean_gap": 0.3932,
+        "p05_same_minus_p95_diff": -0.0197,
+        "auc": 0.9607
+      }
+    }
+  },
+  "case_study": {
+    "same_pair": {
+      "notice_id_a": "N010018",
+      "notice_id_b": "N010020",
+      "portal_a": "P004",
+      "portal_b": "P008",
+      "candidate_a_word_sim": 0.3053,
+      "candidate_b2_char3_5_sim": 0.3397,
+      "candidate_c_composite_sim": 0.4524,
+      "candidate_c_mitigated_sim": 0.4531
+    },
+    "diff_pair": {
+      "notice_id_a": "N007876",
+      "notice_id_b": "N008565",
+      "portal_a": "P001",
+      "portal_b": "P006",
+      "candidate_a_word_sim": 0.4201,
+      "candidate_b2_char3_5_sim": 0.4508,
+      "candidate_c_composite_sim": 0.3189,
+      "candidate_c_mitigated_sim": 0.3189
+    }
+  },
+  "recommendation": {
+    "chosen_representation": "candidate_c_composite",
+    "justification": "Candidate C (Composite: 0.7 Body + 0.3 Title, Char 3-5-grams) elevates AUC to 0.9416 with a mean separation gap of 0.3888 (vs 0.2599 for unweighted body n-grams), robustly rescuing truncated tenders while driving different-pair similarity down toward zero."
+  }
+}

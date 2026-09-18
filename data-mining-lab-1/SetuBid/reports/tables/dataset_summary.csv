@@ -1,0 +1,13 @@
+metric,value
+total_notices,12000
+unique_portals,260
+total_files,8
+min_published_date,2024-01-01
+max_published_date,2025-11-27
+body_len_mean,4527.3
+body_len_median,4482.0
+body_len_p95,6710.049999999999
+title_len_mean,80.57
+title_len_median,80.0
+nodal_portal_notices,4665
+nodal_portal_pct,38.88

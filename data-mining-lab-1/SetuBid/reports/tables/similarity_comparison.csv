@@ -1,0 +1,6 @@
+representation,same_mean,same_median,same_p05,diff_mean,diff_median,diff_p95,mean_separation_gap,auc
+Candidate A (Word Tokens),0.7355,0.7351,0.3732,0.4414,0.444,0.5981,0.2941,0.8707
+Candidate B1 (Char 3-grams),0.8071,0.8174,0.5251,0.5999,0.6,0.7215,0.2071,0.8581
+Candidate B2 (Char 3-5-grams),0.7414,0.7357,0.4089,0.4815,0.4804,0.6366,0.2599,0.859
+Candidate C (Composite: 0.7 Body + 0.3 Title),0.7475,0.7494,0.5212,0.3661,0.3617,0.4831,0.3814,0.9948
+Candidate C+Mitigation (Stripped Composite),0.7307,0.751,0.4604,0.3375,0.351,0.4801,0.3932,0.9607

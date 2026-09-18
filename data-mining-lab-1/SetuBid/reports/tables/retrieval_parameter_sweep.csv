@@ -1,0 +1,5 @@
+config,bands,rows,approx_threshold,same_pairs_retrieved,same_pair_recall,diff_pairs_retrieved,diff_pair_exposure,candidate_count_mean,candidate_count_median,candidate_count_p95,candidate_count_max,query_time_ms,false_splits,expected_risk_cost
+b64_r4,64,4,0.354,273,0.9785,602,0.9694,1521.1,1580.0,1608.0,1625,412.47,6,307.0
+b32_r8,32,8,0.648,189,0.6774,166,0.2673,235.3,225.0,438.0,474,148.97,90,173.0
+b16_r16,16,16,0.841,107,0.3835,1,0.0016,7.1,2.0,31.0,72,362.16,172,172.5
+b8_r32,8,32,0.937,90,0.3226,0,0.0,0.2,0.0,1.0,3,16.78,189,189.0

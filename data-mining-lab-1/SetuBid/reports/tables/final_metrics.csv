@@ -1,0 +1,12 @@
+stage,time_seconds,pct_of_total
+Ingestion Time (s),0.01,0.0
+Normalization & Shingling Time (s),19.0,8.2
+MinHash Representation Time (s),158.62,68.7
+Index Build Time (s),4.58,2.0
+Candidate Retrieval Time (s),1.6,0.7
+Exact Verification Time (s),15.51,6.7
+Clustering & Identity Persistence Time (s),31.1,13.5
+Total Pipeline Wall-Clock Time (s),231.05,100.0
+Total Pipeline Time (minutes),3.85,100.0
+Production Budget (minutes),20.0,100.0
+Budget Utilization (%),19.25,19.25

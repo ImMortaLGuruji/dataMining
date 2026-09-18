@@ -1,0 +1,56 @@
+[
+  {
+    "metric": "Total Pipeline Retrieval Runtime (s)",
+    "before": 0.72,
+    "after": 0.52,
+    "change_pct": "-27.8%"
+  },
+  {
+    "metric": "Total Candidate Comparisons",
+    "before": 18175838.0,
+    "after": 6030296.0,
+    "change_pct": "-66.8%"
+  },
+  {
+    "metric": "Median Candidates per Notice",
+    "before": 1533.0,
+    "after": 521.0,
+    "change_pct": "-66.0%"
+  },
+  {
+    "metric": "P95 Candidates per Notice",
+    "before": 2592.0,
+    "after": 805.0,
+    "change_pct": "-68.9%"
+  },
+  {
+    "metric": "P99 Candidates per Notice",
+    "before": 3027.01,
+    "after": 903.0,
+    "change_pct": "-70.2%"
+  },
+  {
+    "metric": "Maximum Candidates per Notice",
+    "before": 3641.0,
+    "after": 1180.0,
+    "change_pct": "-67.6%"
+  },
+  {
+    "metric": "Nodal Portals Share of Total Work (%)",
+    "before": 44.21,
+    "after": 46.46,
+    "change_pct": "+5.1%"
+  },
+  {
+    "metric": "Labelled Same-Pair Recall (%)",
+    "before": 67.74,
+    "after": 65.95,
+    "change_pct": "-2.6%"
+  },
+  {
+    "metric": "Labelled Different-Pair Exposure (%)",
+    "before": 26.73,
+    "after": 12.72,
+    "change_pct": "-52.4%"
+  }
+]

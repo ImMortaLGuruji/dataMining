@@ -1,0 +1,78 @@
+{
+  "total_pairs": 900,
+  "n_same": 279,
+  "n_different": 621,
+  "p_same": 0.31,
+  "p_different": 0.69,
+  "class_imbalance_ratio": 2.23,
+  "data_hygiene": {
+    "self_pairs": 0,
+    "duplicate_pairs": 0,
+    "reversed_pairs": 0,
+    "missing_notices_in_corpus": 0
+  },
+  "portal_distribution": {
+    "same_portal_count": 238,
+    "same_portal_pct": 26.44,
+    "cross_portal_count": 662,
+    "cross_portal_pct": 73.56,
+    "same_pairs_in_same_portal": 0,
+    "same_pairs_in_cross_portal": 279,
+    "diff_pairs_in_same_portal": 238,
+    "diff_pairs_in_cross_portal": 383
+  },
+  "adjudicators": {
+    "ops3": 162,
+    "ops2": 157,
+    "ops1": 151,
+    "ops5": 150,
+    "ops4": 141,
+    "ops6": 139
+  },
+  "delta_metrics": {
+    "pub_delta_days": {
+      "same": {
+        "mean": 7.11,
+        "median": 5.0,
+        "p95": 23.099999999999966,
+        "max": 45
+      },
+      "different": {
+        "mean": 207.98,
+        "median": 170.0,
+        "p95": 499.0,
+        "max": 625
+      }
+    },
+    "cls_delta_days": {
+      "same": {
+        "mean": 5.49,
+        "median": 0.0,
+        "p95": 20.099999999999966,
+        "max": 24
+      },
+      "different": {
+        "mean": 208.82,
+        "median": 176.0,
+        "p95": 502.0,
+        "max": 615
+      }
+    },
+    "val_diff": {
+      "same": {
+        "mean": 0.0,
+        "median": 0.0,
+        "p95": 0.0,
+        "max": 0.0,
+        "identical_pct": 100.0
+      },
+      "different": {
+        "mean": 178607278.58,
+        "median": 80370000.0,
+        "p95": 738300000.0,
+        "max": 974890000.0,
+        "identical_pct": 0.0
+      }
+    }
+  }
+}

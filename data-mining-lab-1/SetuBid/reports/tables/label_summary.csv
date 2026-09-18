@@ -1,0 +1,10 @@
+metric,value
+total_pairs,900.0
+same_count,279.0
+different_count,621.0
+p_same,0.31
+p_different,0.69
+same_portal_pct,26.44
+cross_portal_pct,73.56
+same_pairs_cross_portal_pct,100.0
+diff_pairs_cross_portal_pct,61.67

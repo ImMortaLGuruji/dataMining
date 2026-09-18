@@ -1,0 +1,124 @@
+{
+  "status": "before_mitigation",
+  "total_notices": 12000,
+  "total_candidate_comparisons": 18175838,
+  "index_build_seconds": 173.81,
+  "retrieval_seconds": 0.72,
+  "distribution": {
+    "mean": 1514.7,
+    "median": 1533.0,
+    "p90": 2389.0,
+    "p95": 2592.0,
+    "p99": 3027.01,
+    "max": 3641
+  },
+  "cumulative_concentration": {
+    "top_1_pct_notices_generate_work_pct": 2.11,
+    "top_5_pct_notices_generate_work_pct": 9.42,
+    "top_10_pct_notices_generate_work_pct": 17.58,
+    "top_20_pct_notices_generate_work_pct": 32.67
+  },
+  "top_10_heavy_portals": [
+    {
+      "portal_id": "P094",
+      "notices": 1426,
+      "mean_candidates": 1475.2,
+      "median_candidates": 1398.0,
+      "p95_candidates": 2713.5,
+      "max_candidates": 3496,
+      "total_candidate_work": 2103580,
+      "pct_of_total_work": 11.57
+    },
+    {
+      "portal_id": "P002",
+      "notices": 800,
+      "mean_candidates": 2128.0,
+      "median_candidates": 2212.0,
+      "p95_candidates": 2439.1,
+      "max_candidates": 2635,
+      "total_candidate_work": 1702425,
+      "pct_of_total_work": 9.37
+    },
+    {
+      "portal_id": "P001",
+      "notices": 778,
+      "mean_candidates": 2121.4,
+      "median_candidates": 2201.5,
+      "p95_candidates": 2432.3,
+      "max_candidates": 2744,
+      "total_candidate_work": 1650483,
+      "pct_of_total_work": 9.08
+    },
+    {
+      "portal_id": "P005",
+      "notices": 768,
+      "mean_candidates": 2120.9,
+      "median_candidates": 2195.0,
+      "p95_candidates": 2440.0,
+      "max_candidates": 2730,
+      "total_candidate_work": 1628825,
+      "pct_of_total_work": 8.96
+    },
+    {
+      "portal_id": "P006",
+      "notices": 792,
+      "mean_candidates": 1329.9,
+      "median_candidates": 1387.5,
+      "p95_candidates": 1862.8999999999999,
+      "max_candidates": 2141,
+      "total_candidate_work": 1053262,
+      "pct_of_total_work": 5.79
+    },
+    {
+      "portal_id": "P003",
+      "notices": 772,
+      "mean_candidates": 1306.7,
+      "median_candidates": 1355.0,
+      "p95_candidates": 1840.6999999999996,
+      "max_candidates": 2219,
+      "total_candidate_work": 1008742,
+      "pct_of_total_work": 5.55
+    },
+    {
+      "portal_id": "P004",
+      "notices": 755,
+      "mean_candidates": 1314.7,
+      "median_candidates": 1373.0,
+      "p95_candidates": 1835.5999999999995,
+      "max_candidates": 2128,
+      "total_candidate_work": 992633,
+      "pct_of_total_work": 5.46
+    },
+    {
+      "portal_id": "P240",
+      "notices": 377,
+      "mean_candidates": 1532.4,
+      "median_candidates": 1460.0,
+      "p95_candidates": 2752.4,
+      "max_candidates": 3458,
+      "total_candidate_work": 577724,
+      "pct_of_total_work": 3.18
+    },
+    {
+      "portal_id": "P020",
+      "notices": 384,
+      "mean_candidates": 1487.3,
+      "median_candidates": 1384.0,
+      "p95_candidates": 2715.4499999999994,
+      "max_candidates": 3399,
+      "total_candidate_work": 571111,
+      "pct_of_total_work": 3.14
+    },
+    {
+      "portal_id": "P044",
+      "notices": 224,
+      "mean_candidates": 1386.9,
+      "median_candidates": 1279.5,
+      "p95_candidates": 2609.25,
+      "max_candidates": 3266,
+      "total_candidate_work": 310667,
+      "pct_of_total_work": 1.71
+    }
+  ],
+  "nodal_aggregators_pct_of_total_work": 44.21
+}

@@ -1,0 +1,26 @@
+{
+  "database": "DuckDB 1.5.5 (Persistent file-backed)",
+  "db_file": "setubid.duckdb",
+  "total_notices": 12000,
+  "total_signatures": 384000,
+  "sample_queries": 50,
+  "indexed_access": {
+    "strategy": "Index Probe / Hash Join with ART Index",
+    "mean_ms": 2.799,
+    "median_ms": 2.782,
+    "p95_ms": 3.35,
+    "min_ms": 2.117,
+    "max_ms": 3.822,
+    "rows_examined": 24992
+  },
+  "sequential_scan": {
+    "strategy": "Full Sequential Table Scan",
+    "mean_ms": 2.814,
+    "median_ms": 2.848,
+    "p95_ms": 3.355,
+    "min_ms": 2.145,
+    "max_ms": 3.463,
+    "rows_examined": 384000
+  },
+  "speedup_factor": 1.01
+}

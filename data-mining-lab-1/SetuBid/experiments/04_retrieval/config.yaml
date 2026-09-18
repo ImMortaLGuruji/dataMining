@@ -1,0 +1,10 @@
+retrieval:
+  algorithm: lsh_banding
+  num_hashes: 256
+  selected_bands: 64
+  selected_rows: 4
+  threshold_s_star: 0.354
+risk:
+  false_merge_cost: 50.0
+  false_split_cost: 1.0
+  ratio: 50.0

@@ -1,0 +1,39 @@
+# SetuBid Deduplication Baseline Configuration
+paths:
+  notices_dir: "../exam/data_2/notices"
+  labels_file: "../exam/data_2/labelled_pairs.csv"
+  portal_profiles_file: "../exam/data_2/portal_profiles.md"
+  db_path: "setubid.duckdb"
+
+similarity:
+  representation: "character_ngrams" # candidate_a: word_tokens, candidate_b: character_ngrams
+  ngram_min: 3
+  ngram_max: 5
+  lowercase: true
+  strip_accents: true
+
+estimator:
+  algorithm: "minhash"
+  num_hashes: 256
+  seed: 42
+  error_bound_target: 0.05
+  confidence_target: 0.95
+
+retrieval:
+  algorithm: "lsh_banding"
+  num_bands: 32
+  rows_per_band: 8 # num_hashes = num_bands * rows_per_band = 256
+  candidate_cap: 200
+
+risk:
+  false_merge_cost: 50.0  # C_FM: High liability / legal cost
+  false_split_cost: 1.0   # C_FS: Minor duplicate UX cost
+  cost_ratio_R: 50.0
+
+mitigation:
+  strip_preamble_nodal: true
+  high_frequency_bucket_cap: 100
+
+identity:
+  id_prefix: "CARD-"
+  deterministic_hash: "sha256"

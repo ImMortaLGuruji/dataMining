@@ -1,0 +1,3 @@
+access_path,rows_examined,mean_time_ms,median_time_ms,p95_time_ms,max_time_ms
+Production (Indexed ART / Hash Join),24992,2.8,2.78,3.35,3.82
+Alternative (Forced Sequential Table Scan),384000,2.81,2.85,3.35,3.46
